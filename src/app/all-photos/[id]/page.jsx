@@ -33,7 +33,8 @@ const photoDetailsPage = async ({ params }) => {
   );
   const images = await res.json();
   const expectedImage = images.find((i) => i.id == id);
-  console.log(expectedImage);
+  //   console.log(expectedImage);
+
   const formatDate = (dateString) => {
     if (!dateString) return "Unknown date";
     return new Date(dateString).toLocaleDateString("en-US", {
