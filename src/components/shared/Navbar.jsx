@@ -2,11 +2,14 @@
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
-import { Avatar } from "@heroui/react";
+import { Avatar, Button } from "@heroui/react";
 
 const Navbar = () => {
   const userData = authClient.useSession();
   const user = userData.data?.user;
+  const handelSingOut = async () => {
+    await authClient.signOut();
+  };
   console.log(user);
   return (
     <div className="border-b px-2">
@@ -50,10 +53,19 @@ const Navbar = () => {
             </ul>
           )}
           {user && (
-            <Avatar>
-              <Avatar.Image alt="John Doe" src={user?.image} />
-              <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
-            </Avatar>
+            <div className="flex">
+              <Avatar size="sm">
+                <Avatar.Image
+                  alt={user?.name}
+                  src={user?.image}
+                  referrerPolicy="no-referrer"
+                />
+                <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
+              </Avatar>
+              <Button onClick={handelSingOut} size="sm">
+                sing Out
+              </Button>
+            </div>
           )}
         </div>
       </nav>
