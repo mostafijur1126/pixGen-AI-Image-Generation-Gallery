@@ -4,6 +4,7 @@ import React from "react";
 import { FaHeart } from "react-icons/fa";
 import { IoMdDownload } from "react-icons/io";
 import { Button } from "@heroui/react";
+import Link from "next/link";
 
 const ImageCard = ({ topImage }) => {
   console.log(topImage);
@@ -35,9 +36,11 @@ const ImageCard = ({ topImage }) => {
             <p>{topImage.downloads}</p>
           </div>
         </div>
-        <Button variant="outline" className="w-full">
-          Vew details
-        </Button>
+        <Link href={`/all-photos/${topImage.id}`}>
+          <Button variant="outline" className="w-full">
+            Vew details
+          </Button>
+        </Link>
       </Card>
     </div>
   );
